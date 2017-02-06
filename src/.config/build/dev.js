@@ -1,0 +1,81 @@
+/**
+ * Created by zhengqiguang on 2017/2/6.
+ */
+process.env.NODE_ENV = "development";
+
+var webpack = require("webpack");
+var express = require("express");
+var opn = require("opn");
+var os = require("os");
+
+var devConf = require("../webpack-config/webpack.dev.conf");
+var buildDevConf = require("../build-config/dev");
+
+
+var app = express();
+
+
+if (buildDevConf.serverHotReload) {
+    Object.keys(devConf.entry).forEach(function (name) {
+        devConf.entry[name] = ['./.config/build/client'].concat(devConf.entry[name])
+    });
+
+    devConf.plugins = devConf.plugins.concat([
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoEmitOnErrorsPlugin()
+    ]);
+
+}
+
+
+var compiler = webpack(devConf);
+
+var devMiddleware = require("webpack-dev-middleware")(compiler, {
+    publicPath: devConf.output.publicPath,
+    stats: {
+        colors: true,
+        chunks: false
+    }
+});
+
+if (buildDevConf.serverHotReload) {
+
+
+    var hotMiddleware = require("webpack-hot-middleware")(compiler);
+
+    compiler.plugin("compilation", function (compilation) {
+        compilation.plugin("html-webpack-plugin-after-emit", function (data, cb) {
+            hotMiddleware.publish({action: "reload"});
+            cb();
+        });
+    })
+    app.use(hotMiddleware);
+}
+
+
+app.use(require("connect-history-api-fallback")());
+
+app.use(devMiddleware);
+
+
+//TODO serve pure static assets
+
+console.log(os.platform());
+
+module.exports = app.listen(buildDevConf.devServerPort, function (err) {
+    if (err) {
+        console.error(err);
+        return;
+    }
+
+    var uri = `${(buildDevConf.serverUrl || "http://localhost")}:${buildDevConf.devServerPort}`;
+
+    console.log(`Listening at ${uri}\n`);
+
+    var chromeVar = (os.platform() == "darwin" && "google chrome") || (os.platform() == "win32" && "chrome");
+
+    opn(uri, {
+        app: [chromeVar, "--incognito"]
+    })
+
+});
