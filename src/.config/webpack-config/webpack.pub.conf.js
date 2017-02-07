@@ -1,14 +1,13 @@
 /**
- * Created by zhengqiguang on 2017/2/6.
+ * Created by zhengqiguang on 2017/2/7.
  */
 var merge = require("webpack-merge"),
     baseConf = require("./webpack.base.conf");
 
 module.exports = merge(baseConf, {
     output: {
-        filename: "[hash].[name].js"
+        filename: "[name].[chunkhash].js"
     },
-    devtool: "source-map",
+    devtool: "nosources-source-map",
     plugins: []
 });
-

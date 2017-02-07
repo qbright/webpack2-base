@@ -11,14 +11,14 @@ var entryList = buildBaseConf.build.entryList;
 var devEntryList = {
     index: {
         HtmlPluginConf: {
-            filename: "./index.html",
+            filename: "./index-pub.html",
             template: "./index.ejs"
         }
 
     },
     index1: {
         HtmlPluginConf: {
-            filename: "./index1.html",
+            filename: "./index-pub-1.html",
             template: "./index1.ejs"
         }
     }

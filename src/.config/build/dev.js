@@ -3,13 +3,15 @@
  */
 process.env.NODE_ENV = "development";
 
+
 var webpack = require("webpack");
 var express = require("express");
+var common = require("./common");
 var opn = require("opn");
 var os = require("os");
 
 var devConf = require("../webpack-config/webpack.dev.conf");
-var buildDevConf = require("../build-config/dev");
+var buildDevConf = common.getConfig();
 
 
 var app = express();
@@ -38,6 +40,7 @@ var devMiddleware = require("webpack-dev-middleware")(compiler, {
     }
 });
 
+
 if (buildDevConf.serverHotReload) {
 
 
@@ -52,15 +55,9 @@ if (buildDevConf.serverHotReload) {
     app.use(hotMiddleware);
 }
 
-
 app.use(require("connect-history-api-fallback")());
 
 app.use(devMiddleware);
-
-
-//TODO serve pure static assets
-
-console.log(os.platform());
 
 module.exports = app.listen(buildDevConf.devServerPort, function (err) {
     if (err) {
@@ -71,6 +68,12 @@ module.exports = app.listen(buildDevConf.devServerPort, function (err) {
     var uri = `${(buildDevConf.serverUrl || "http://localhost")}:${buildDevConf.devServerPort}`;
 
     console.log(`Listening at ${uri}\n`);
+
+    console.log(`Publish path at ${devConf.output.publicPath}`);
+
+    if (!buildDevConf.openBrowser) {
+        return;
+    }
 
     var chromeVar = (os.platform() == "darwin" && "google chrome") || (os.platform() == "win32" && "chrome");
 

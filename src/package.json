@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node .config/build/dev.js"
+    "dev": "node .config/build/dev.js",
+    "pub": "node .config/build/pub.js"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +18,8 @@
     "http-proxy-middleware": "^0.17.3",
     "opn": "^4.0.2",
     "ora": "^1.1.0",
+    "serve-index": "^1.8.0",
+    "serve-static": "^1.11.2",
     "shelljs": "^0.7.6",
     "webpack": "^2.2.1",
     "webpack-dev-middleware": "^1.10.0",
