@@ -7,17 +7,19 @@ var pwd = process.env.PWD;
 
 
 module.exports = {
-    devServerPort: 8080,
-    serverUrl: "",
-    serverHotReload: false,
-    openBrowser: false,
-    productSourceMap: false,
+    devServerPort: 8080, // dev 服务器端口
+    serverUrl: "", //dev 服务器打开域名,默认为 http://localhost
+    serverHotReload: false, //dev 服务器热重载
+    openBrowser: false, //是否自动打开浏览器
+    productSourceMap: false, //pub 是否生成 source map
+    extractCss: true, // 是否导出 css 文件
     static: {
         url: {
             ds: "http://www.ddd.com"
         }
     },
     build: {
+        assetPath: "./",// 相对于构建目录的子目录
         output: {
             path: path.resolve(pwd, "./dist"), //构建目录
             publicPath: "/" //资源定位目录

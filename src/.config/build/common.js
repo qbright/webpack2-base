@@ -10,6 +10,9 @@ var configMap = {
     "production": require("../build-config/pub")
 }
 
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var path = require("path");
+
 module.exports = {
 
     getConfig: function () {
@@ -46,6 +49,83 @@ module.exports = {
         }
 
         return temp;
+    },
+
+    getAssetPath(_path){
+        return path.posix.join(this.getConfig().build.assetPath, _path);
+
+    },
+
+    styleLoaders: function (extract) {
+        var output = [];
+        var loaders = this.cssLoaders(extract);
+        for (var extension in loaders) {
+            var loader = loaders[extension]
+            output.push({
+                test: new RegExp('\\.' + extension + '$'),
+                use: loader
+            })
+        }
+
+
+        return output
+
+    },
+
+    cssLoaders: function (extract) {
+        return {
+            css: this.generateLoaders(['css', 'postcss'], extract)
+
+        }
+    },
+    generateLoaders(loaders, extract){
+        var sourceLoader = loaders.map(function (loader) {
+            if (/\?/.test(loader)) {
+                loader = loader.replace(/\?/, '-loader?')
+            } else {
+                loader = loader + '-loader'
+            }
+
+            if (loader === "postcss-loader") {
+                return {
+                    loader: loader,
+                    options: {
+                        plugins: function () {
+                            return [
+                                require("autoprefixer")({
+                                    browsers: ['last 10 versions']
+                                })
+                            ];
+                        }
+                    }
+                }
+
+            } else {
+                return {
+                    loader: loader,
+                    options: {}
+                }
+            }
+
+            return loader;
+        });
+
+        if (extract) {
+            console.log(ExtractTextPlugin.extract({
+                fallback: "style-loader",
+                use: sourceLoader
+            }), 21212121);
+
+            return ExtractTextPlugin.extract({
+                fallback: "style-loader",
+                use: sourceLoader
+            });
+
+        } else {
+            return ['style-loader'].concat(sourceLoader);
+        }
+
     }
+
 
 }
