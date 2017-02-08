@@ -1,4 +1,4 @@
 body {
-    background: red;
     user-select: none;
+    background-image: url("../img/td.png");
 }

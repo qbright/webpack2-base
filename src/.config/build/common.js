@@ -111,10 +111,6 @@ module.exports = {
         });
 
         if (extract) {
-            console.log(ExtractTextPlugin.extract({
-                fallback: "style-loader",
-                use: sourceLoader
-            }), 21212121);
 
             return ExtractTextPlugin.extract({
                 fallback: "style-loader",

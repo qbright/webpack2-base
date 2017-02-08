@@ -4,4 +4,9 @@
 
 import "../style/a.css";
 
+import t from "../tpl/ttt.tpl";
+
+
+
+
 console.log(process.static);

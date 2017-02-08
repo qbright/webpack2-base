@@ -57,17 +57,46 @@ for (var i = 0, h; h = htmlPlugins[i]; i++) {
 
 /** rules(loaders) **/
 
-var rules = [{
-    test: /\.js$/,
-    loaders: 'babel-loader',
-    query: {
-        cacheDirectory: true
+var rules = [
+    {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [{
+            loader: 'babel-loader',
+            query: {
+                cacheDirectory: true
+            }
+        }]
     },
-    exclude: /node_modules/
-}, {
-    test: /\.tpl$/,
-    loaders: "ejs-compiled-loader"
-}];
+    {
+        test: /\.tpl$/,
+        use: ["ejs-compiled-loader"]
+    },
+    {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        use: [
+            {
+                loader: "url-loader",
+                query: {
+                    limit: 10000,
+                    name: common.getAssetPath('img/[name].[hash:7].[ext]')
+                }
+            }
+        ]
+    },
+    {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        use: [
+            {
+                loader: "url-loader",
+                query: {
+                    limit: 10000,
+                    name: common.getAssetPath('fonts/[name].[hash:7].[ext]')
+                }
+            }
+        ]
+    }
+]
 
 
 module.exports = {
