@@ -12,6 +12,9 @@ var entries = common.getEntry(buildConf.build.entryList);
 var htmlPlugins = common.getHtmlPlugin(buildConf.build.entryList);
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+
+var staticTplMap = common.getTplMap(buildConf.staticTplDir);
+
 /** plugins **/
 var commonHtmlPluginConfig = {
     inject: true,
@@ -21,9 +24,11 @@ var commonHtmlPluginConfig = {
         removeAttributeQuotes: true
     },
     chunks: ["manifest", "vendor"],
-    chunksSortMode: 'dependency'
+    chunksSortMode: 'dependency',
+    static_tpl: staticTplMap
 }
 
+console.log(commonHtmlPluginConfig);
 
 /** you can push new plugin on the array **/
 var plugins = [

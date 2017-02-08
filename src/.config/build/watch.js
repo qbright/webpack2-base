@@ -17,6 +17,10 @@ spinner.start();
 
 common.removeDistDir(`${buildConf.build.output.path}/*`);
 
+if (buildConf.build.staticPath && buildConf.build.staticAssetPath) {
+    common.copyStatic(buildConf.build.staticPath, buildConf.build.staticAssetPath);
+}
+
 var compiler = webpack(watchConf);
 
 compiler.watch({ // watch options:

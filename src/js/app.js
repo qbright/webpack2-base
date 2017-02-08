@@ -2,7 +2,7 @@
  * Created by zhengqiguang on 2017/1/18.
  */
 
-import "../style/a.css";
+import "../style/t.less";
 
 import alloyFinger from "alloyfinger_currenttarget"
 

@@ -17,6 +17,10 @@ spinner.start();
 
 common.removeDistDir(`${buildConf.build.output.path}/*`);
 
+if (buildConf.build.staticPath && buildConf.build.staticAssetPath) {
+    common.copyStatic(buildConf.build.staticPath, buildConf.build.staticAssetPath);
+}
+
 //TODO删除构建目录内容
 
 webpack(pubConf, function (err, stats) {

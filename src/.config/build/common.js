@@ -15,6 +15,9 @@ var configMap = {
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require("path");
 
+var fs = require("fs"),
+    path = require("path");
+
 module.exports = {
 
     getConfig: function () {
@@ -76,7 +79,10 @@ module.exports = {
 
     cssLoaders: function (extract, minimize) {
         return {
-            css: this.generateLoaders(['css', 'postcss'], extract, minimize)
+            css: this.generateLoaders(['css', 'postcss'], extract, minimize),
+            sass: this.generateLoaders(['css', 'postcss', 'sass?indentedSyntax'], extract, minimize),
+            scss: this.generateLoaders(['css', 'postcss', 'sass'], extract, minimize),
+            less: this.generateLoaders(['css', 'postcss', 'less'], extract, minimize)
 
         }
     },
@@ -128,6 +134,31 @@ module.exports = {
     },
     removeDistDir: function (path) {
         rm("-rf", path);
+    },
+
+    copyStatic: function (path, toPath) {
+        rm("-rf", toPath);
+        mkdir("-p", toPath);
+        cp("-R", `${path}/*`, toPath);
+    },
+
+    getTplMap: function (staticTplPath) {
+
+        var files = fs.readdirSync(staticTplPath);
+        var tempMap = {};
+
+        for (var i = 0, file; file = files[i]; i++) {
+            var asPath = path.join(staticTplPath, file);
+
+            var stat = fs.statSync(asPath);
+            if (stat.isFile()) {
+                tempMap[file.replace(/\./g, "_")] = fs.readFileSync(asPath, "UTF-8");
+            }
+
+
+        }
+
+        return tempMap;
     }
 
 

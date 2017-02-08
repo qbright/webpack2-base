@@ -57,6 +57,12 @@ if (buildDevConf.serverHotReload) {
 
 app.use(require("connect-history-api-fallback")());
 
+
+// 如果存在 staticPath ,将其映射到 host:port/static
+if (buildDevConf.build.staticPath) {
+    app.use("/static", express.static(buildDevConf.build.staticPath));
+}
+
 app.use(devMiddleware);
 
 module.exports = app.listen(buildDevConf.devServerPort, function (err) {
