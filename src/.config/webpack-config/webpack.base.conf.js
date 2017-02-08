@@ -106,6 +106,14 @@ module.exports = {
         path: buildConf.build.output.path,
         publicPath: buildConf.build.output.publicPath
     },
+    // resolve: {//TODO 研究下什么用
+    //     extensions: ['.js', ''],
+    //     fallback: [path.join(__dirname, '../node_modules')],
+    //     alias: {}
+    // },
+    // resolveLoader: {
+    //     fallback: [path.join(__dirname, '../node_modules')]
+    // },
     module: {
         rules: rules
     },

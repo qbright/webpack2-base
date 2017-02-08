@@ -11,14 +11,14 @@ var entryList = buildBaseConf.build.entryList;
 var pubEntryList = {
     index: {
         HtmlPluginConf: {
-            filename: "./index-pub.html",
+            filename: "./index-test.html",
             template: "./index.ejs"
         }
 
     },
     index1: {
         HtmlPluginConf: {
-            filename: "./index-pub-1.html",
+            filename: "./index-test-1.html",
             template: "./index1.ejs"
         }
     }
@@ -29,7 +29,7 @@ var pubEntryList = {
 module.exports = merge(buildBaseConf, {
     static: {
         url: {
-            ds: "http://ccc.yy.com"
+            ds: "http://test.ccc.yy.com"
         }
     },
     build: {

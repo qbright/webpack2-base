@@ -4,9 +4,7 @@
 
 import "../style/a.css";
 
-import t from "../tpl/ttt.tpl";
+import alloyFinger from "alloyfinger_currenttarget"
 
-
-
-
+console.log(123);
 console.log(process.static);

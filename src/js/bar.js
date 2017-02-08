@@ -3,5 +3,6 @@
  */
 
 // import "../style/a1.css";
+import uid from "uid";
 
 console.log(2);

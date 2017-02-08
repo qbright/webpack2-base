@@ -2,16 +2,16 @@
  * Created by zhengqiguang on 2017/2/7.
  */
 
-process.env.NODE_ENV = "production";
+process.env.NODE_ENV = "test";
 
 var common = require("../build/common");
 
 var webpack = require("webpack");
-var pubConf = require("../webpack-config/webpack.pub.conf");
+var pubConf = require("../webpack-config/webpack.test.conf");
 var buildConf = common.getConfig();
 var ora = require("ora");
 
-var spinner = ora("building for production...");
+var spinner = ora("building for production test...");
 spinner.start();
 
 
@@ -30,4 +30,3 @@ webpack(pubConf, function (err, stats) {
             chunkModules: false
         }) + '\n');
 });
-

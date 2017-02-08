@@ -3,11 +3,13 @@
  */
 
 
-
+require("shelljs/global");
 
 var configMap = {
     "development": require("../build-config/dev"),
-    "production": require("../build-config/pub")
+    "production": require("../build-config/pub"),
+    "watch": require("../build-config/watch"),
+    "test": require("../build-config/test")
 }
 
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -56,9 +58,9 @@ module.exports = {
 
     },
 
-    styleLoaders: function (extract) {
+    styleLoaders: function (extract, minimize) {
         var output = [];
-        var loaders = this.cssLoaders(extract);
+        var loaders = this.cssLoaders(extract, minimize);
         for (var extension in loaders) {
             var loader = loaders[extension]
             output.push({
@@ -72,13 +74,13 @@ module.exports = {
 
     },
 
-    cssLoaders: function (extract) {
+    cssLoaders: function (extract, minimize) {
         return {
-            css: this.generateLoaders(['css', 'postcss'], extract)
+            css: this.generateLoaders(['css', 'postcss'], extract, minimize)
 
         }
     },
-    generateLoaders(loaders, extract){
+    generateLoaders(loaders, extract, minimize){
         var sourceLoader = loaders.map(function (loader) {
             if (/\?/.test(loader)) {
                 loader = loader.replace(/\?/, '-loader?')
@@ -103,7 +105,9 @@ module.exports = {
             } else {
                 return {
                     loader: loader,
-                    options: {}
+                    options: {
+                        minimize: !!minimize
+                    }
                 }
             }
 
@@ -121,6 +125,9 @@ module.exports = {
             return ['style-loader'].concat(sourceLoader);
         }
 
+    },
+    removeDistDir: function (path) {
+        rm("-rf", path);
     }
 
 
