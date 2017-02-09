@@ -7,7 +7,7 @@ var merge = require("webpack-merge"),
 
 module.exports = merge(baseConf, {
     output: {
-        filename: common.getAssetPath("./js/[name].[chunkhash:7]js")
+        filename: common.getAssetPath("./js/[name].[chunkhash:7].js")
     },
     module: {
         rules: common.styleLoaders()
