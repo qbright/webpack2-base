@@ -3,18 +3,24 @@
  */
 
 var merge = require("webpack-merge");
-var configCommon = require("./configCommon");
+var configCommon = require("../build/configCommon");
 var buildBaseConf = require("./base");
 
 var entryList = buildBaseConf.build.entryList;
 
-var devEntryList = {
+var pubEntryList = {
     index: {
         HtmlPluginConf: {
-            filename: "./index.html",
+            filename: "./index-pub.html",
             template: "./index.ejs"
         }
 
+    },
+    index1: {
+        HtmlPluginConf: {
+            filename: "./index-pub-1.html",
+            template: "./index1.ejs"
+        }
     }
 
 }
@@ -27,7 +33,7 @@ module.exports = merge(buildBaseConf, {
         }
     },
     build: {
-        entryList: configCommon.mergeTwoObjList(entryList, devEntryList)
+        entryList: configCommon.mergeTwoObjList(entryList, pubEntryList)
     }
 });
 

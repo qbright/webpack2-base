@@ -28,6 +28,7 @@ var commonHtmlPluginConfig = {
     static_tpl: staticTplMap
 }
 
+console.log(commonHtmlPluginConfig);
 
 /** you can push new plugin on the array **/
 var plugins = [

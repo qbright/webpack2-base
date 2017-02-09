@@ -2,9 +2,7 @@
  * Created by zhengqiguang on 2017/1/18.
  */
 
-import "../style/t.less";
+import "../style/style.css";
 
-import alloyFinger from "alloyfinger_currenttarget"
+console.log("hello");
 
-console.log(123);
-console.log(process.static);

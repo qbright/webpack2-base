@@ -15,14 +15,7 @@ var pubEntryList = {
             template: "./index.ejs"
         }
 
-    },
-    index1: {
-        HtmlPluginConf: {
-            filename: "./index-pub-1.html",
-            template: "./index1.ejs"
-        }
     }
-
 }
 
 
