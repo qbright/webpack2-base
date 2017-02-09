@@ -1,9 +1,8 @@
 /**
  * Created by zhengqiguang on 2017/2/6.
  */
-
 var path = require("path");
-var pwd = process.env.PWD;
+var pwd = process.env.PWD || process.cwd();
 
 
 module.exports = {

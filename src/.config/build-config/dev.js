@@ -14,9 +14,7 @@ var devEntryList = {
             filename: "./index.html",
             template: "./index.ejs"
         }
-
     }
-
 }
 
 
