@@ -11,8 +11,7 @@ var entryList = buildBaseConf.build.entryList;
 var pubEntryList = {
     index: {
         HtmlPluginConf: {
-            filename: "./index-test.html",
-            template: "./index.ejs"
+            filename: "./index-test.html"
         }
 
     }

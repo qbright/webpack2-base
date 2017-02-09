@@ -9,12 +9,6 @@ var buildBaseConf = require("./base");
 var entryList = buildBaseConf.build.entryList;
 
 var devEntryList = {
-    index: {
-        HtmlPluginConf: {
-            filename: "./index.html",
-            template: "./index.ejs"
-        }
-    }
 }
 
 

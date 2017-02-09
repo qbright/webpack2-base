@@ -29,7 +29,10 @@ module.exports = {
         entryList: {
             index: {
                 entry: "./js/app.js",
-                HtmlPluginConf: {}
+                HtmlPluginConf: {
+                    filename: "./index.html",
+                    template: "./index.ejs"
+                }
             }
         }
 
