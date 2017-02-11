@@ -73,7 +73,7 @@ var rules = [
         }]
     },
     {
-        test: /\.tpl$/,
+        test: /(\.tpl|\.ejs)$/,
         use: ["ejs-compiled-loader"]
     },
     {
