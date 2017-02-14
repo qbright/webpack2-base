@@ -10,12 +10,13 @@ var webpack = require("webpack");
 var pubConf = require("../webpack-config/webpack.test.conf");
 var buildConf = common.getConfig();
 var ora = require("ora");
+var path = require("path");
 
 var spinner = ora("building for production test...");
 spinner.start();
 
-
-common.removeDistDir(`${buildConf.build.output.path}/*`);
+var p = path.resolve(buildConf.build.output.path, buildConf.build.assetPath);
+common.removeDistDir(`${p}/*`);
 
 if (buildConf.build.staticPath && buildConf.build.staticAssetPath) {
     common.copyStatic(buildConf.build.staticPath, buildConf.build.staticAssetPath);

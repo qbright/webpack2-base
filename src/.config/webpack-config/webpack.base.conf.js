@@ -36,7 +36,7 @@ var plugins = [
         'process.static': common.getDefineString(buildConf.static)
     }),
     new ExtractTextPlugin({
-            filename: common.getAssetPath('css/[name].[chunkhash:7].css')
+            filename: common.getAssetPath('css/[name].[hash:7].css')
         }
     ),
     new webpack.optimize.CommonsChunkPlugin({
