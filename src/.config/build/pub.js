@@ -24,15 +24,23 @@ if (buildConf.build.staticPath && buildConf.build.staticAssetPath) {
 
 //TODO删除构建目录内容
 
-webpack(pubConf, function (err, stats) {
-    spinner.stop();
-    if (err) throw err
-    process.stdout.write(stats.toString({
-            colors: true,
-            modules: false,
-            children: false,
-            chunks: false,
-            chunkModules: false
-        }) + '\n');
-});
+// module.exports = {
+//     dd: function () {
+
+
+        webpack(pubConf, function (err, stats) {
+            spinner.stop();
+            if (err) throw err
+            process.stdout.write(stats.toString({
+                    colors: true,
+                    modules: false,
+                    children: false,
+                    chunks: false,
+                    chunkModules: false
+                }) + '\n');
+        });
+//
+//     }
+//
+// }
 
