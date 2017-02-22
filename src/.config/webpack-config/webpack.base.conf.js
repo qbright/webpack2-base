@@ -4,8 +4,7 @@ var common = require("../build/common");
 var merge = require("webpack-merge"),
     webpack = require("webpack"),
     path = require("path"),
-    HtmlWebpackPlugin = require('html-webpack-plugin'),
-    ManifestPlugin = require("webpack-manifest-plugin")
+    HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var buildConf = common.getConfig();
 
@@ -50,9 +49,7 @@ var plugins = [
     new webpack.optimize.CommonsChunkPlugin({
         name: "manifest",
         chunks: ["vendor"]
-    }),
-    new ManifestPlugin()
-
+    })
 ];
 for (var i = 0, h; h = htmlPlugins[i]; i++) {
     plugins.push(new HtmlWebpackPlugin(merge(commonHtmlPluginConfig, h)));
