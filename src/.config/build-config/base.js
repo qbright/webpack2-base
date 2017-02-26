@@ -33,13 +33,6 @@ module.exports = {
                     filename: "./index.html",
                     template: "./index.ejs"
                 }
-            },
-            index1: {
-                entry: "./js/bar.js",
-                HtmlPluginConf: {
-                    filename: "./index1.html",
-                    template: "./index.ejs"
-                }
             }
 
         }

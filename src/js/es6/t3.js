@@ -1,9 +1,6 @@
 /**
  * Created by zhengqiguang on 2017/2/21.
  */
-import {bar1} from "../bar";
-
-bar1();
 
 export let bar = function () {
     console.log("t3");

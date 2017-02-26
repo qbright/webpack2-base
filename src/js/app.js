@@ -3,14 +3,20 @@
  */
 
 // import "../style/style.css";
-
-import {bar} from "./es6/t1";
+//
+import {bar,dd} from "./es6/t1";
 import T2 from "./es6/t2";
 
+dd.t();
 bar();
 T2();
 
+System.import("./es6/t3").then(T3=> {
+    console.log(T3);
 
+});
+
+//
 // var t1 = require("./es5/t1");
 // var t2 = require("./es5/t2");
 //
@@ -22,11 +28,6 @@ T2();
 // t2();
 //
 // t2_t();
-//
-System.import("./es6/t3").then(T3=> {
-    console.log(T3);
-
-});
 
 // require.ensure("./es5/t3", function () {
 //     var t3 = require("./es5/t3");
