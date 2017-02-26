@@ -15,12 +15,12 @@ var path = require("path");
 var spinner = ora("building for production test...");
 spinner.start();
 
-var p = path.resolve(buildConf.build.output.path, buildConf.build.assetPath);
-common.removeDistDir(`${p}/*`);
-
-if (buildConf.build.staticPath && buildConf.build.staticAssetPath) {
-    common.copyStatic(buildConf.build.staticPath, buildConf.build.staticAssetPath);
-}
+// var p = path.resolve(buildConf.build.output.path, buildConf.build.assetPath);
+// common.removeDistDir(`${p}/*`);
+//
+// if (buildConf.build.staticPath && buildConf.build.staticAssetPath) {
+//     common.copyStatic(buildConf.build.staticPath, buildConf.build.staticAssetPath);
+// }
 
 
 webpack(pubConf, function (err, stats) {
